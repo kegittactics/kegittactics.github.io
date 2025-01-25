@@ -1,0 +1,19 @@
+{
+   "name": "George Holmes F1 Racing",
+   "short_name": "GH Racing",
+   "icons": [
+       {
+           "src": "/assets/favicons/android-chrome-192x192.png",
+           "sizes": "192x192",
+           "type": "image/png"
+       },
+       {
+           "src": "/assets/favicons/android-chrome-512x512.png",
+           "sizes": "512x512",
+           "type": "image/png"
+       }
+   ],
+   "theme_color": "#ef4444",
+   "background_color": "#1f2937",
+   "display": "standalone"
+}

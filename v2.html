@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Domain & Site Verification -->
+    <meta name="google-site-verification" content="Q0SAlC8sbFZEzpYuMTuG7fHe8M1rKCa_D-EzyQ1RKKY" />
+    
+    <!-- Primary Meta Tags -->
+    <title>George Holmes F1 Racing Experience | Professional Racing Simulators</title>
+    <meta name="title" content="George Holmes F1 Racing Experience | Professional Racing Simulators">
+    <meta name="description" content="Experience professional F1 racing simulation with latest F1 24 game. Book Grand Prix, Time Trial, or Online Racing sessions on pro-grade simulators.">
+    <meta name="keywords" content="F1 simulator, racing experience, F1 24, racing simulation, George Holmes Racing, professional racing, F1 esports">
+    <meta name="author" content="George Holmes Racing">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kegittactics.github.io/">
+    <meta property="og:title" content="George Holmes F1 Racing Experience">
+    <meta property="og:description" content="Professional F1 racing simulation experience with latest F1 24 game. Book your session now!">
+    <meta property="og:image" content="https://kegittactics.github.io/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kegittactics.github.io/">
+    <meta property="twitter:title" content="George Holmes F1 Racing Experience">
+    <meta property="twitter:description" content="Professional F1 racing simulation experience with latest F1 24 game. Book your session now!">
+    <meta property="twitter:image" content="https://kegittactics.github.io/images/twitter-image.jpg">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#ef4444">
+    <meta name="msapplication-TileColor" content="#ef4444">
+    <meta name="theme-color" content="#ef4444">
+    <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+
+    <!-- EmailJS Configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("muTpLIzxO7imGcdiv");
+        const emailConfig = {
+            serviceID: 'service_mouz3p9',
+            templateID: 'template_booking'
+        };
+
+        // Global Racing Data Configuration
+        const racingConfig = {
+            cars: {
+                redbull: { name: 'Red Bull RB20', team: 'Red Bull Racing', power: 98 },
+                ferrari: { name: 'Ferrari SF-24', team: 'Scuderia Ferrari', power: 96 },
+                mercedes: { name: 'Mercedes W15', team: 'Mercedes-AMG', power: 95 },
+                mclaren: { name: 'McLaren MCL38', team: 'McLaren Racing', power: 94 },
+                aston: { name: 'Aston Martin AMR24', team: 'Aston Martin', power: 93 }
+            },
+            tracks: {
+                silverstone: { name: 'Silverstone', country: 'Great Britain', length: '5.891 km' },
+                spa: { name: 'Spa-Francorchamps', country: 'Belgium', length: '7.004 km' },
+                monza: { name: 'Monza', country: 'Italy', length: '5.793 km' },
+                monaco: { name: 'Monaco', country: 'Monaco', length: '3.337 km' }
+            },
+            packages: {
+                rookie: { price: 59.99, duration: '30 mins', features: ['Basic Setup', 'Single Track'] },
+                pro: { price: 99.99, duration: '60 mins', features: ['Advanced Setup', 'All Tracks'] },
+                elite: { price: 149.99, duration: '90 mins', features: ['Pro Setup', 'All Features'] }
+            }
+        };
+    </script>
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- F1 Font Integration -->
+    <link rel="stylesheet" href="https://www.formula1.com/etc/designs/fom-website/fonts/F1Regular/Formula1-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="https://www.formula1.com/etc/designs/fom-website/fonts/F1Bold/Formula1-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Custom Styles -->
+    <style>
+        @font-face {
+            font-family: 'Formula1';
+            src: url('https://www.formula1.com/etc/designs/fom-website/fonts/F1Regular/Formula1-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Formula1';
+            src: url('https://www.formula1.com/etc/designs/fom-website/fonts/F1Bold/Formula1-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --primary-color: #ef4444;
+            --secondary-color: #1f2937;
+            --accent-color: #f97316;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --f1-font: 'Formula1', sans-serif;
+        }
+
+        body {
+            font-family: var(--f1-font);
+            scroll-behavior: smooth;
+            background-color: var(--secondary-color);
+            color: var(--text-primary);
+        }
+
+        .f1-title {
+            font-family: var(--f1-font);
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .f1-text {
+            font-family: var(--f1-font);
+            font-weight: normal;
+        }
+
+        .racing-gradient {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://www.formula1.com/content/dam/fom-website/manual/Misc/2024car/F1_2024_FEB_LAUNCH.png') center/cover;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                       0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                       0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gray-900 bg-opacity-90 z-50 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-4">
+                    <img src="https://www.formula1.com/etc/designs/fom-website/images/f1_logo.svg" alt="F1 Logo" class="h-8">
+                    <span class="f1-title text-2xl">George Holmes Racing</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link relative hover:text-red-500 f1-text">About</a>
+                    <a href="#racing" class="nav-link relative hover:text-red-500 f1-text">Racing</a>
+                    <a href="#pricing" class="nav-link relative hover:text-red-500 f1-text">Pricing</a>
+                    <a href="#contact" class="nav-link relative hover:text-red-500 f1-text">Contact</a>
+                </div>
+                <button onclick="openBookingModal()" class="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-colors f1-text">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="racing-gradient min-h-screen flex items-center justify-center text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="f1-title text-6xl md:text-7xl mb-6 animate-fade-in">Experience F1 Racing</h1>
+            <p class="f1-text text-xl md:text-2xl mb-12 text-gray-300 animate-fade-in">Professional simulators featuring F1 23 & F1 24</p>
+            <div class="flex justify-center space-x-6">
+                <button onclick="scrollToBooking()" 
+                        class="bg-red-600 px-8 py-3 rounded-full text-lg f1-text hover:bg-red-700 transition-colors animate-fade-in">
+                    Start Racing
+                </button>
+                <button onclick="scrollToModes()" 
+                        class="bg-gray-800 px-8 py-3 rounded-full text-lg f1-text hover:bg-gray-700 transition-colors animate-fade-in">
+                    View Modes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="f1-title text-4xl mb-4">Professional Racing Experience</h2>
+                    <p class="f1-text text-gray-300 leading-relaxed">
+                        Step into the world of Formula 1 with our state-of-the-art simulators. Experience the thrill of racing on professional-grade equipment used by real F1 drivers.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <span class="f1-title text-3xl text-red-500">5000+</span>
+                            <p class="f1-text text-gray-400">Laps Completed</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="f1-title text-3xl text-red-500">1000+</span>
+                            <p class="f1-text text-gray-400">Happy Racers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl hover-scale card-shadow">
+                        <i class="fas fa-trophy text-red-500 text-3xl mb-4"></i>
+                        <h3 class="f1-title text-xl mb-2">Pro Setup</h3>
+                        <p class="f1-text text-gray-400">Professional-grade racing equipment</p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl hover-scale card-shadow">
+                        <i class="fas fa-vr-cardboard text-red-500 text-3xl mb-4"></i>
+                        <h3 class="f1-title text-xl mb-2">VR Ready</h3>
+                        <p class="f1-text text-gray-400">Immersive virtual reality experience</p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl hover-scale card-shadow">
+                        <i class="fas fa-chart-line text-red-500 text-3xl mb-4"></i>
+                        <h3 class="f1-title text-xl mb-2">Analytics</h3>
+                        <p class="f1-text text-gray-400">Detailed performance tracking</p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl hover-scale card-shadow">
+                        <i class="fas fa-graduation-cap text-red-500 text-3xl mb-4"></i>
+                        <h3 class="f1-title text-xl mb-2">Coaching</h3>
+                        <p class="f1-text text-gray-400">Expert racing instruction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToModes() {
+            document.getElementById('racing').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+<!-- Racing Modes Section -->
+<section id="racing" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+        <!-- F1 Cars Showcase -->
+        <div class="mb-20">
+            <h2 class="f1-title text-4xl mb-8 text-center">2024 F1 Cars Available</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Red Bull RB20 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-scale card-shadow">
+                    <img src="https://www.formula1.com/content/dam/fom-website/teams/2024/red-bull-racing.png.transform/6col/image.png" 
+                         alt="Red Bull RB20" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="f1-title text-2xl mb-2">Red Bull RB20</h3>
+                        <p class="text-red-500 mb-4">Oracle Red Bull Racing</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>Power: 98/100</div>
+                            <div>Handling: 97/100</div>
+                            <div>Acceleration: 96/100</div>
+                            <div>DRS: 98/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferrari SF-24 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-scale card-shadow">
+                    <img src="https://www.formula1.com/content/dam/fom-website/teams/2024/ferrari.png.transform/6col/image.png" 
+                         alt="Ferrari SF-24" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="f1-title text-2xl mb-2">Ferrari SF-24</h3>
+                        <p class="text-red-500 mb-4">Scuderia Ferrari</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>Power: 96/100</div>
+                            <div>Handling: 95/100</div>
+                            <div>Acceleration: 97/100</div>
+                            <div>DRS: 96/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mercedes W15 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-scale card-shadow">
+                    <img src="https://www.formula1.com/content/dam/fom-website/teams/2024/mercedes.png.transform/6col/image.png" 
+                         alt="Mercedes W15" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="f1-title text-2xl mb-2">Mercedes W15</h3>
+                        <p class="text-red-500 mb-4">Mercedes-AMG Petronas</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>Power: 95/100</div>
+                            <div>Handling: 96/100</div>
+                            <div>Acceleration: 95/100</div>
+                            <div>DRS: 95/100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- F1 Tracks Showcase -->
+        <div class="mb-20">
+            <h2 class="f1-title text-4xl mb-8 text-center">Featured Circuits</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Silverstone -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-scale card-shadow">
+                    <div class="relative h-64">
+                        <img src="https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images/SilverstoneGP.jpg" 
+                             alt="Silverstone" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="f1-title text-2xl">Silverstone Circuit</h3>
+                            <p class="text-red-500">British Grand Prix</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>Length: 5.891 km</div>
+                            <div>Turns: 18</div>
+                            <div>DRS Zones: 2</div>
+                            <div>Lap Record: 1:27.097</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spa-Francorchamps -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-scale card-shadow">
+                    <div class="relative h-64">
+                        <img src="https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images/SpaGP.jpg" 
+                             alt="Spa" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="f1-title text-2xl">Spa-Francorchamps</h3>
+                            <p class="text-red-500">Belgian Grand Prix</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>Length: 7.004 km</div>
+                            <div>Turns: 19</div>
+                            <div>DRS Zones: 2</div>
+                            <div>Lap Record: 1:46.286</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Racing Modes -->
+        <div>
+            <h2 class="f1-title text-4xl mb-8 text-center">Racing Experiences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Grand Prix -->
+                <div class="bg-gray-800 rounded-xl p-6 hover-scale card-shadow">
+                    <i class="fas fa-trophy text-red-500 text-3xl mb-4"></i>
+                    <h3 class="f1-title text-2xl mb-2">Grand Prix</h3>
+                    <p class="text-gray-400 mb-4">Full race weekend experience</p>
+                    <ul class="space-y-2 mb-6">
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Practice Sessions</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Qualifying</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Race Strategy</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Podium Ceremony</li>
+                    </ul>
+                </div>
+
+                <!-- Time Trial -->
+                <div class="bg-gray-800 rounded-xl p-6 hover-scale card-shadow">
+                    <i class="fas fa-stopwatch text-red-500 text-3xl mb-4"></i>
+                    <h3 class="f1-title text-2xl mb-2">Time Trial</h3>
+                    <p class="text-gray-400 mb-4">Perfect your lap times</p>
+                    <ul class="space-y-2 mb-6">
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Unlimited Laps</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Ghost Car</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Sector Times</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Setup Workshop</li>
+                    </ul>
+                </div>
+
+                <!-- Multiplayer -->
+                <div class="bg-gray-800 rounded-xl p-6 hover-scale card-shadow">
+                    <i class="fas fa-users text-red-500 text-3xl mb-4"></i>
+                    <h3 class="f1-title text-2xl mb-2">Multiplayer</h3>
+                    <p class="text-gray-400 mb-4">Race against friends</p>
+                    <ul class="space-y-2 mb-6">
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Head-to-Head Racing</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Custom Tournaments</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Live Leaderboards</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Team Racing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Pricing & Booking Section -->
+<section id="booking" class="py-20 bg-gray-800">
+    <div class="container mx-auto px-4">
+        <!-- Pricing Packages -->
+        <div class="mb-20">
+            <h2 class="f1-title text-4xl mb-8 text-center">Racing Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Rookie Package -->
+                <div class="bg-gray-900 rounded-xl p-8 hover-scale card-shadow">
+                    <div class="text-center mb-8">
+                        <h3 class="f1-title text-2xl mb-2">Rookie</h3>
+                        <div class="text-red-500 text-3xl font-bold mb-4">
+                            <span class="text-lg">$</span>59.99
+                        </div>
+                        <p class="text-gray-400">Perfect for beginners</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            30-minute session
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Basic car setup
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Single track choice
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('rookie')" 
+                            class="w-full bg-red-600 py-3 rounded-full hover:bg-red-700 transition-colors">
+                        Select Package
+                    </button>
+                </div>
+
+                <!-- Pro Package -->
+                <div class="bg-gray-900 rounded-xl p-8 hover-scale card-shadow transform scale-105">
+                    <div class="absolute top-0 right-0 bg-red-600 px-4 py-1 rounded-bl-xl rounded-tr-xl">
+                        Popular
+                    </div>
+                    <div class="text-center mb-8">
+                        <h3 class="f1-title text-2xl mb-2">Pro</h3>
+                        <div class="text-red-500 text-3xl font-bold mb-4">
+                            <span class="text-lg">$</span>99.99
+                        </div>
+                        <p class="text-gray-400">For serious racers</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            60-minute session
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Advanced setup options
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            All tracks available
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Performance analysis
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('pro')" 
+                            class="w-full bg-red-600 py-3 rounded-full hover:bg-red-700 transition-colors">
+                        Select Package
+                    </button>
+                </div>
+
+                <!-- Elite Package -->
+                <div class="bg-gray-900 rounded-xl p-8 hover-scale card-shadow">
+                    <div class="text-center mb-8">
+                        <h3 class="f1-title text-2xl mb-2">Elite</h3>
+                        <div class="text-red-500 text-3xl font-bold mb-4">
+                            <span class="text-lg">$</span>149.99
+                        </div>
+                        <p class="text-gray-400">Ultimate experience</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            90-minute session
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Pro setup options
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            All tracks + VR
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Personal coaching
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i>
+                            Video analysis
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('elite')" 
+                            class="w-full bg-red-600 py-3 rounded-full hover:bg-red-700 transition-colors">
+                        Select Package
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="max-w-2xl mx-auto bg-gray-900 rounded-xl p-8">
+            <h3 class="f1-title text-2xl mb-6">Complete Your Booking</h3>
+            <form id="bookingForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block mb-2">First Name</label>
+                        <input type="text" id="firstName" required
+                               class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Last Name</label>
+                        <input type="text" id="lastName" required
+                               class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block mb-2">Email</label>
+                        <input type="email" id="email" required
+                               class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Phone</label>
+                        <input type="tel" id="phone" required
+                               class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block mb-2">Preferred Date</label>
+                        <input type="date" id="date" required
+                               class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Preferred Time</label>
+                        <select id="timeSlot" required
+                                class="w-full bg-gray-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                            <option value="morning">Morning (9AM - 12PM)</option>
+                            <option value="afternoon">Afternoon (1PM - 5PM)</option>
+                            <option value="evening">Evening (6PM - 9PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-red-600 py-3 rounded-full hover:bg-red-700 transition-colors">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        function selectPackage(package) {
+            selectedPackage = package;
+            document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                timeSlot: document.getElementById('timeSlot').value,
+                package: selectedPackage,
+                bookingReference: `GHR-${Date.now().toString(36).toUpperCase()}`
+            };
+
+            emailjs.send(emailConfig.serviceID, emailConfig.templateID, formData)
+                .then(function(response) {
+                    showNotification('success', 'Booking confirmed! Check your email for details.');
+                    document.getElementById('bookingForm').reset();
+                })
+                .catch(function(error) {
+                    showNotification('error', 'Booking failed. Please try again.');
+                });
+        });
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg ${
+                type === 'success' ? 'bg-green-600' : 'bg-red-600'
+            }`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 5000);
+        }
+    </script>
+</section>
+<!-- Important Information Section -->
+<section class="bg-gray-900 py-20">
+    <div class="container mx-auto px-4">
+        <!-- Racing Requirements -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-red-600 p-3 rounded-lg">
+                        <i class="fas fa-id-card text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="f1-title text-xl">Requirements</h3>
+                        <ul class="text-gray-400 space-y-2 mt-2">
+                            <li>Valid ID required</li>
+                            <li>Minimum age: 16</li>
+                            <li>Signed waiver form</li>
+                            <li>Comfortable clothing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-red-600 p-3 rounded-lg">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="f1-title text-xl">Session Times</h3>
+                        <ul class="text-gray-400 space-y-2 mt-2">
+                            <li>Morning: 9AM - 12PM</li>
+                            <li>Afternoon: 1PM - 5PM</li>
+                            <li>Evening: 6PM - 9PM</li>
+                            <li>Arrive 15 mins early</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-red-600 p-3 rounded-lg">
+                        <i class="fas fa-info-circle text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="f1-title text-xl">Cancellation Policy</h3>
+                        <ul class="text-gray-400 space-y-2 mt-2">
+                            <li>48hr notice: Full refund</li>
+                            <li>24hr notice: 50% refund</li>
+                            <li>Less than 24hr: No refund</li>
+                            <li>Reschedule available</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location & Contact -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-red-600 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="f1-title text-xl">Location</h3>
+                        <p class="text-gray-400">123 Racing Street, Circuit City, CC1 2RF</p>
+                    </div>
+                </div>
+                <div class="mt-4 h-64">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_CODE"
+                        class="w-full h-full rounded-lg"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-red-600 p-3 rounded-lg">
+                            <i class="fas fa-phone text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="f1-title text-xl">Contact Details</h3>
+                            <ul class="text-gray-400 space-y-2 mt-2">
+                                <li>Phone: +44 123 456 7890</li>
+                                <li>Email: info@georgeholmesracing.com</li>
+                                <li>WhatsApp: +44 789 012 3456</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl hover-scale card-shadow">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-red-600 p-3 rounded-lg">
+                            <i class="fas fa-calendar text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="f1-title text-xl">Opening Hours</h3>
+                            <ul class="text-gray-400 space-y-2 mt-2">
+                                <li>Monday - Friday: 9:00 AM - 9:00 PM</li>
+                                <li>Saturday: 10:00 AM - 8:00 PM</li>
+                                <li>Sunday: 11:00 AM - 6:00 PM</li>
+                                <li>Bank Holidays: 11:00 AM - 5:00 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Company Info -->
+            <div>
+                <img src="/assets/images/logo.png" alt="George Holmes Racing" class="h-12 mb-4">
+                <p class="text-gray-400">Professional F1 racing simulation experience</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="f1-title text-xl mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#about" class="hover:text-red-500">About Us</a></li>
+                    <li><a href="#racing" class="hover:text-red-500">Racing Modes</a></li>
+                    <li><a href="#pricing" class="hover:text-red-500">Pricing</a></li>
+                    <li><a href="#contact" class="hover:text-red-500">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h4 class="f1-title text-xl mb-4">Legal</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-red-500">Terms & Conditions</a></li>
+                    <li><a href="#" class="hover:text-red-500">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-red-500">Booking Policy</a></li>
+                    <li><a href="#" class="hover:text-red-500">FAQs</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div>
+                <h4 class="f1-title text-xl mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="bg-gray-900 p-3 rounded-full hover:bg-red-600 transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="bg-gray-900 p-3 rounded-full hover:bg-red-600 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="bg-gray-900 p-3 rounded-full hover:bg-red-600 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="bg-gray-900 p-3 rounded-full hover:bg-red-600 transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-700 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2024 George Holmes Racing. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <span class="text-gray-400">Designed with <i class="fas fa-heart text-red-500"></i> by George Holmes Racing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    // Global Configuration
+const CONFIG = {
+    API_KEY: 'muTpLIzxO7imGcdiv',
+    SERVICE_ID: 'service_mouz3p9',
+    TEMPLATE_ID: 'template_booking',
+    MAPS_API_KEY: 'YOUR_GOOGLE_MAPS_KEY'
+};
+
+// Initialize Services
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEmailJS();
+    initializeAnalytics();
+    initializeBookingSystem();
+    initializeAnimations();
+});
+
+// EmailJS Configuration
+function initializeEmailJS() {
+    emailjs.init(CONFIG.API_KEY);
+}
+
+// Analytics Tracking
+function initializeAnalytics() {
+    // Custom analytics implementation
+    trackPageViews();
+    trackUserInteractions();
+}
+
+// Booking System
+function initializeBookingSystem() {
+    setupDatePicker();
+    setupTimeSlots();
+    handleBookingSubmissions();
+}
+
+// Animation System
+function initializeAnimations() {
+    setupScrollAnimations();
+    setupHoverEffects();
+}
+
+// Utility Functions
+const utils = {
+    formatCurrency: (amount) => {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP'
+        }).format(amount);
+    },
+    
+    generateBookingReference: () => {
+        return `GHR-${Date.now().toString(36).toUpperCase()}`;
+    },
+    
+    validateEmail: (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+};
+
+// Event Handlers
+document.getElementById('bookingForm')?.addEventListener('submit', handleBookingSubmission);
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', handleNavigation);
+});
+
+// Booking Handler
+function handleBookingSubmission(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const bookingData = {
+        reference: utils.generateBookingReference(),
+        customer: {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone')
+        },
+        session: {
+            date: formData.get('date'),
+            time: formData.get('time'),
+            package: formData.get('package')
+        }
+    };
+    
+    processBooking(bookingData);
+}
+
+// Booking Processor
+async function processBooking(bookingData) {
+    try {
+        const response = await emailjs.send(
+            CONFIG.SERVICE_ID,
+            CONFIG.TEMPLATE_ID,
+            {
+                to_name: bookingData.customer.name,
+                booking_ref: bookingData.reference,
+                session_details: `${bookingData.session.date} at ${bookingData.session.time}`,
+                package_type: bookingData.session.package
+            }
+        );
+        
+        showNotification('success', 'Booking confirmed! Check your email for details.');
+        resetBookingForm();
+        
+    } catch (error) {
+        showNotification('error', 'Booking failed. Please try again.');
+        console.error('Booking Error:', error);
+    }
+}
+
+// Notification System
+function showNotification(type, message) {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg ${
+        type === 'success' ? 'bg-green-600' : 'bg-red-600'
+    } text-white z-50 animate-fade-in`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.classList.add('animate-fade-out');
+        setTimeout(() => notification.remove(), 500);
+    }, 4000);
+}
+
+// Animation Handlers
+function setupScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    });
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+}
+
+// Navigation Handler
+function handleNavigation(e) {
+    e.preventDefault();
+    const targetId = e.target.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+        targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Export functionality for module usage
+export {
+    CONFIG,
+    utils,
+    showNotification,
+    handleBookingSubmission
+};
+
+</script>

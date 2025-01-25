@@ -1,0 +1,30 @@
+# www.georgeholmesracing.com robots.txt
+
+User-agent: *
+Allow: /
+Allow: /racing-modes
+Allow: /pricing
+Allow: /booking
+Allow: /contact
+
+# Protect sensitive directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Allow CSS, JS, and Images
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Crawl delay for better server performance
+Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://www.georgeholmesracing.com/sitemap.xml

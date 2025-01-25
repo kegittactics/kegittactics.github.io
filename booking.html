@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 SimRacing Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gray-900/90 backdrop-blur-sm z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-2xl font-bold">F1 SimRacing</h1>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="hover:text-red-500">Home</a></li>
+                    <li><a href="#pricing" class="hover:text-red-500">Pricing</a></li>
+                    <li><a href="#tracks" class="hover:text-red-500">Tracks</a></li>
+                    <li><a href="#location" class="hover:text-red-500">Location</a></li>
+                    <li><button onclick="openBookingModal()" class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700">Book Now</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1619786485226-4da3315873c2')] bg-cover bg-center">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div class="relative container mx-auto h-full flex items-center px-4">
+            <div class="max-w-2xl">
+                <h2 class="text-5xl font-bold mb-4 fade-in">Experience F1 Racing</h2>
+                <p class="text-xl mb-8 fade-in">From $5 rookie sessions to $499 elite experiences - feel the thrill of F1 racing today!</p>
+                <button onclick="openBookingModal()" class="bg-red-600 px-8 py-3 rounded-full font-bold hover:bg-red-700 transition fade-in">Start Racing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Information -->
+    <section class="py-12 bg-red-600/10">
+        <div class="container mx-auto px-4">
+            <div class="border-2 border-red-600 rounded-lg p-8">
+                <h2 class="text-2xl font-bold mb-4">⚠️ Important Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <ul class="space-y-3">
+                        <li>✓ Cash payment only upon arrival</li>
+                        <li>✓ Arrive 15 minutes before session</li>
+                        <li>✓ Minimum age: 12 years</li>
+                        <li>✓ Bring valid ID</li>
+                    </ul>
+                    <ul class="space-y-3">
+                        <li>✓ Wear comfortable clothing</li>
+                        <li>✓ Closed-toe shoes required</li>
+                        <li>✓ Free parking available</li>
+                        <li>✓ 24-hour cancellation policy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">Racing Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Rookie Package -->
+                <div class="bg-gray-900 rounded-lg p-6 transform hover:scale-105 transition fade-in">
+                    <div class="bg-red-600/20 text-red-500 px-3 py-1 rounded-full text-sm inline-block mb-4">BEGINNER</div>
+                    <h3 class="text-xl font-bold mb-4">Rookie Experience</h3>
+                    <p class="text-gray-400 mb-4">Perfect for first-timers</p>
+                    <ul class="mb-6 space-y-2">
+                        <li>✓ 15-minute session</li>
+                        <li>✓ Basic simulator</li>
+                        <li>✓ Instructor guidance</li>
+                        <li>✓ Practice laps</li>
+                    </ul>
+                    <p class="text-2xl font-bold mb-4">$5</p>
+                    <button onclick="openBookingModal('rookie')" class="w-full bg-red-600 py-2 rounded-full hover:bg-red-700">Book Now</button>
+                </div>
+
+                <!-- Pro Package -->
+                <div class="bg-gray-900 rounded-lg p-6 transform hover:scale-105 transition fade-in">
+                    <div class="bg-red-600/20 text-red-500 px-3 py-1 rounded-full text-sm inline-block mb-4">POPULAR</div>
+                    <h3 class="text-xl font-bold mb-4">Pro Experience</h3>
+                    <p class="text-gray-400 mb-4">For serious racers</p>
+                    <ul class="mb-6 space-y-2">
+                        <li>✓ 1-hour session</li>
+                        <li>✓ Motion simulator</li>
+                        <li>✓ Race analysis</li>
+                        <li>✓ Telemetry data</li>
+                        <li>✓ Multiple track choice</li>
+                    </ul>
+                    <p class="text-2xl font-bold mb-4">$199</p>
+                    <button onclick="openBookingModal('pro')" class="w-full bg-red-600 py-2 rounded-full hover:bg-red-700">Book Now</button>
+                </div>
+
+                <!-- Elite Package -->
+                <div class="bg-gray-900 rounded-lg p-6 transform hover:scale-105 transition fade-in">
+                    <div class="bg-red-600/20 text-red-500 px-3 py-1 rounded-full text-sm inline-block mb-4">PREMIUM</div>
+                    <h3 class="text-xl font-bold mb-4">Elite Experience</h3>
+                    <p class="text-gray-400 mb-4">Ultimate package</p>
+                    <ul class="mb-6 space-y-2">
+                        <li>✓ 3-hour championship</li>
+                        <li>✓ Premium simulator</li>
+                        <li>✓ Pro coaching</li>
+                        <li>✓ VIP lounge access</li>
+                        <li>✓ Race recording</li>
+                        <li>✓ Refreshments included</li>
+                    </ul>
+                    <p class="text-2xl font-bold mb-4">$499</p>
+                    <button onclick="openBookingModal('elite')" class="w-full bg-red-600 py-2 rounded-full hover:bg-red-700">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Track Section -->
+    <section id="tracks" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">Featured Tracks</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Monaco -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden fade-in">
+                    <img src="https://example.com/monaco.jpg" alt="Monaco" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">Monaco Grand Prix</h3>
+                        <p class="text-gray-400">Length: 3.337 km</p>
+                        <p class="text-gray-400">Difficulty: Expert</p>
+                    </div>
+                </div>
+
+                <!-- Silverstone -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden fade-in">
+                    <img src="https://example.com/silverstone.jpg" alt="Silverstone" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">Silverstone</h3>
+                        <p class="text-gray-400">Length: 5.891 km</p>
+                        <p class="text-gray-400">Difficulty: Intermediate</p>
+                    </div>
+                </div>
+
+                <!-- Monza -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden fade-in">
+                    <img src="https://example.com/monza.jpg" alt="Monza" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">Monza</h3>
+                        <p class="text-gray-400">Length: 5.793 km</p>
+                        <p class="text-gray-400">Difficulty: Beginner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Find Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">Location Details</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold">Address:</h4>
+                            <p>123 Racing Street</p>
+                            <p>Circuit City, ST 12345</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Contact:</h4>
+                            <p>Phone: (555) 123-4567</p>
+                            <p>Email: race@f1sim.com</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Hours:</h4>
+                            <p>Monday - Friday: 9AM - 9PM</p>
+                            <p>Saturday - Sunday: 10AM - 8PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_CODE" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/80 hidden z-50">
+        <div class="container mx-auto px-4 h-full flex items-center justify-center">
+            <div class="bg-gray-800 rounded-lg max-w-lg w-full p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Book Your Session</h3>
+                    <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white">×</button>
+                </div>
+                <form id="bookingForm" class="space-y-6">
+                    <div>
+                        <label class="block mb-2">Full Name</label>
+                        <input type="text" name="name" required class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Email</label>
+                        <input type="email" name="email" required class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Phone</label>
+                        <input type="tel" name="phone" required class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Date & Time</label>
+                        <input type="text" id="datetime" required class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Package</label>
+                        <select name="package" required class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                            <option value="rookie">Rookie ($5)</option>
+                            <option value="pro">Pro ($199)</option>
+                            <option value="elite">Elite ($499)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="terms" name="terms" required class="rounded bg-gray-700 border-gray-600">
+                        <label for="terms" class="text-sm">I agree to the terms and conditions and will pay in cash upon arrival</label>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 py-3 rounded-full font-bold hover:bg-red-700">
+                        <span class="button-text">Confirm Booking</span>
+                        <svg class="loading-spinner hidden w-6 h-6 mx-auto" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/80 hidden z-50">
+        <div class="container mx-auto px-4 h-full flex items-center justify-center">
+            <div class="bg-gray-800 rounded-lg max-w-lg w-full p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">Booking Confirmed!</h3>
+                <p class="mb-6">Check your email for booking details. Remember to bring cash for payment upon arrival.</p>
+                <button onclick="closeSuccessModal()" class="bg-red-600 px-8 py-3 rounded-full font-bold hover:bg-red-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY");
+
+        // Initialize calendar
+        flatpickr("#datetime", {
+            enableTime: true,
+            minDate: "today",
+            minTime: "09:00",
+            maxTime: "21:00",
+            dateFormat: "Y-m-d H:i",
+        });
+
+        // Animation observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Modal functions
+        function openBookingModal(package = 'rookie') {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.querySelector('select[name="package"]').value = package;
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            
+            const submitButton = form.querySelector('button[type="submit"]');
+            const buttonText = submitButton.querySelector('.button-text');
+            const spinner = submitButton.querySelector('.loading-spinner');
+
+            buttonText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+
+            try {
+                // Send confirmation to customer
+                await emailjs.send(
+                    'YOUR_SERVICE_ID',
+                    'template_customer',
+                    {
+                        name: form.name.value,
+                        email: form.email.value,
+                        date: form.datetime.value,
+                        package: form.package.value,
+                        track: form.track.value,
+                        car: form.car.value,
+                        laps: form.laps.value
+                    }
+                );
+
+                // Send notification to admin
+                await emailjs.send(
+                    'YOUR_SERVICE_ID',
+                    'template_admin',
+                    {
+                        name: form.name.value,
+                        email: form.email.value,
+                        phone: form.phone.value,
+                        date: form.datetime.value,
+                        package: form.package.value,
+                        track: form.track.value,
+                        car: form.car.value,
+                        laps: form.laps.value
+                    }
+                );
+
+                closeBookingModal();
+                document.getElementById('successModal').classList.remove('hidden');
+                form.reset();
+            } catch (error) {
+                alert('Booking failed. Please try again.');
+            } finally {
+                buttonText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

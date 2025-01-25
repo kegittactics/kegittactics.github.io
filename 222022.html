@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Sim Racing Bookings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="bg-black p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold text-red-600">F1 Sim Racing</div>
+            <button class="md:hidden" id="menuButton">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex space-x-4">
+                <a href="#home" class="hover:text-red-500">Home</a>
+                <a href="#booking" class="hover:text-red-500">Book Now</a>
+                <a href="#contact" class="hover:text-red-500">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-red-700 to-red-900 py-8 md:py-16" id="home">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-5xl font-bold leading-tight">Ultimate F1 Sim Experience</h1>
+            <p class="text-lg md:text-xl mt-4">Choose your car, track, and race like a champion</p>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-4 py-8 md:py-12" id="booking">
+        <div class="max-w-2xl mx-auto bg-gray-800 rounded-lg shadow-xl p-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">Customize Your Racing Experience</h2>
+            <form id="bookingForm" class="space-y-6">
+                <!-- Personal Info -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Name</label>
+                        <input type="text" name="name" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Email</label>
+                        <input type="email" name="email" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                    </div>
+                </div>
+
+                <!-- Car Selection -->
+                <div>
+                    <label class="block text-gray-300 mb-2">Select Car</label>
+                    <select name="car" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                        <option value="">Choose your car</option>
+                        <option value="mercedes">Mercedes W14</option>
+                        <option value="redbull">Red Bull RB19</option>
+                        <option value="ferrari">Ferrari SF-23</option>
+                        <option value="mclaren">McLaren MCL60</option>
+                        <option value="astonmartin">Aston Martin AMR23</option>
+                    </select>
+                </div>
+
+                <!-- Track Selection -->
+                <div>
+                    <label class="block text-gray-300 mb-2">Select Track</label>
+                    <select name="track" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                        <option value="">Choose your track</option>
+                        <option value="monza">Monza</option>
+                        <option value="spa">Spa-Francorchamps</option>
+                        <option value="monaco">Monaco</option>
+                        <option value="silverstone">Silverstone</option>
+                        <option value="suzuka">Suzuka</option>
+                    </select>
+                </div>
+
+                <!-- Race Mode -->
+                <div>
+                    <label class="block text-gray-300 mb-2">Race Mode</label>
+                    <select name="mode" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                        <option value="">Select mode</option>
+                        <option value="grandprix">Grand Prix (2 hours)</option>
+                        <option value="qualifying">Qualifying Session (1 hour)</option>
+                        <option value="timetrial">Time Trial (30 mins)</option>
+                        <option value="online">Online Race (1.5 hours)</option>
+                    </select>
+                </div>
+
+                <!-- Time and Conditions -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Date</label>
+                        <input type="date" name="date" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Time of Day</label>
+                        <select name="timeOfDay" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                            <option value="sunrise">Sunrise</option>
+                            <option value="day">Day</option>
+                            <option value="sunset">Sunset</option>
+                            <option value="night">Night</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Weather</label>
+                        <select name="weather" class="w-full p-3 border rounded bg-gray-700 text-white" required>
+                            <option value="clear">Clear</option>
+                            <option value="cloudy">Cloudy</option>
+                            <option value="rain">Rain</option>
+                            <option value="dynamic">Dynamic</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-red-600 text-white py-3 px-4 rounded hover:bg-red-700 text-lg transition duration-300">
+                    Book Your Race
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY");
+
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const bookingData = Object.fromEntries(formData);
+            
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", bookingData)
+                .then(function(response) {
+                    alert("Race booking confirmed! Get ready for an amazing experience!");
+                    document.getElementById('bookingForm').reset();
+                })
+                .catch(function(error) {
+                    alert("Booking error. Please try again or contact support.");
+                });
+        });
+
+        // Dynamic pricing calculation (optional)
+        const calculatePrice = () => {
+            const mode = document.querySelector('[name="mode"]').value;
+            const basePrices = {
+                'grandprix': 200,
+                'qualifying': 150,
+                'timetrial': 100,
+                'online': 180
+            };
+            return basePrices[mode] || 0;
+        };
+    </script>
+</body>
+</html>
